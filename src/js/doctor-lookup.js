@@ -26,4 +26,5 @@ export class doctorLookup {
       $('.api-error').text(`There was an error processing your request: ${error.responseTest}. Please try again.`)
     });
   }
+
 }

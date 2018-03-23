@@ -64,6 +64,7 @@ $(document).ready(function() {
     let newDoctorSearch = new doctorLookup(name);
 
     newDoctorSearch.getDoctors(name, displayDoctors);
+    $("#reset").show();
   });
 
   $("#speciality-search").submit(function(event) {
@@ -74,5 +75,10 @@ $(document).ready(function() {
     let newSpecialitySearch = new doctorLookup(medicalIssue);
 
     newSpecialitySearch.getSpecialities(medicalIssue, displaySpecialities)
+    $("#reset").show();
+  });
+
+  $("#reset").click(function() {
+    location.reload();
   })
 })
