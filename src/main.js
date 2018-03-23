@@ -18,8 +18,12 @@ const displayDoctors = function(response) {
       let newPatients =
       response.data[i].practices[i].accepts_new_patients;
 
+      let phoneNumber =
+      response.data[i].practices[i].phones[i].number;
 
-      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>');
+      let website = (website === undefined) ? "none" : response.data[i].practices[i].website;
+
+      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Website:</strong>" + " " + website + '</p>');
     }
   }
 }
