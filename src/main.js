@@ -37,20 +37,20 @@ const displaySpecialities = function(response) {
       let firstName = response.data[i].profile.first_name;
       let lastName = response.data[i].profile.last_name;
 
-      let street = response.data[i].practices[i].visit_address.street;
-      let city = response.data[i].practices[i].visit_address.city;
-      let state = response.data[i].practices[i].visit_address.state;
-      let zipcode = response.data[i].practices[i].visit_address.zip;
+      let street = response.data[i].practices[0].visit_address.street;
+      let city = response.data[i].practices[0].visit_address.city;
+      let state = response.data[i].practices[0].visit_address.state;
+      let zipcode = response.data[i].practices[0].visit_address.zip;
+      let newPatients = response.data[i].practices[0].accepts_new_patients;
 
-      let newPatients =
-      response.data[i].practices[i].accepts_new_patients;
+      let phone = response.data[i].practices[0].phones;
+      let speciality = response.data[i].specialties[0].name;
 
-      let phoneNumber =
-      response.data[i].practices[i].phones[i].number;
-
-      let speciality = response.data[i].specialties[i].name;
-
-      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Speciality:</strong>" + " " + speciality + '</p>' + "<hr>");
+      $('#doctor-results').append(
+          `<h4>${firstName} ${lastName}</h4>
+          <p>${street} ${city} ${state} ${zipcode}</p> <p><strong>Accepts new patients?</strong> ${newPatients}</p>
+          <p><strong>Phone Number:</strong> ${phone[0].number}</p>
+          <p><strong>Speciality:</strong> ${speciality}</p><hr>`);
     }
   }
 }
@@ -68,8 +68,7 @@ $(document).ready(function() {
 
   $("#speciality-search").submit(function(event) {
     event.preventDefault();
-    $("#doctor-search").hide();
-    $("#speciality-search").hide();
+    $("#search-form").hide();
 
     const medicalIssue = $("#medical-issue").val();
     let newSpecialitySearch = new doctorLookup(medicalIssue);

@@ -18,8 +18,7 @@ export class doctorLookup {
 
   getSpecialities(medicalIssue, displaySpecialities) {
     const apiKey = process.env.exports.apiKey;
-    console.log(medicalIssue);
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?conditions=fields=$${medicalIssue}&location=45.523%2C-122.676%2C500&skip=0&limit=20&user_key=${apiKey}`).then(function(response)
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?location=45.523%2C-122.676%2C500&skip=0&limit=20&user_key=${apiKey}&query=${medicalIssue}`).then(function(response)
   {
     displaySpecialities(response);
   })
