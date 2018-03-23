@@ -44,13 +44,15 @@ const displaySpecialities = function(response) {
       let newPatients = response.data[i].practices[0].accepts_new_patients;
 
       let phone = response.data[i].practices[0].phones;
+      let website = (website === undefined) ? "None" : response.data[i].practices[0].website;
       let speciality = response.data[i].specialties[0].name;
 
       $('#doctor-results').append(
           `<h4>${firstName} ${lastName}</h4>
           <p>${street} ${city} ${state} ${zipcode}</p> <p><strong>Accepts new patients?</strong> ${newPatients}</p>
           <p><strong>Phone Number:</strong> ${phone[0].number}</p>
-          <p><strong>Speciality:</strong> ${speciality}</p><hr>`);
+          <p><strong>Speciality:</strong> ${speciality}</p>
+          <p><strong>Website:</strong> ${website}</p><hr>`);
     }
   }
 }
