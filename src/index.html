@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Aldrich|Roboto" rel="stylesheet">
     <meta charset="utf-8">
-    <title></title>
+    <title>Doctor Lookup</title>
   </head>
   <body>
-
+    <div class="jumbotron"><h2>Doctor Lookup</h2></div>
+    <div class="container">
+      <h4>Enter a search query to find a doctor near you:</h4>
+      <form id="doctor-search">
+        <label for="name">Search by doctor name:</label>
+        <input type="text" id="name">
+        <br>
+        <label for="medical-issue">Search by medical issue:</label>
+        <input type="text" id="medical-issue">
+        <br>
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+    </div>
   </body>
 </html>
