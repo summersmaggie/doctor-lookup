@@ -6,35 +6,27 @@ const displayDoctors = function(response) {
     $('#doctor-results').text("There are no doctors that match your search.");
   } else {
     for(let i = 0; i < response.data.length; i++) {
-      console.log(response.data.length);
       let firstName = response.data[i].profile.first_name;
       let lastName = response.data[i].profile.last_name;
-      
-      for(let j = 0; j < response.data[0].practices[i]; j++) {
 
-        console.log(response.data[0].practices[i]);
+      let street = response.data[i].practices[0].visit_address.street;
+      let city = response.data[i].practices[0].visit_address.city;
+      let state = response.data[i].practices[0].visit_address.state;
+      let zipcode = response.data[i].practices[0].visit_address.zip;
+      let newPatients = response.data[i].practices[0].accepts_new_patients;
 
+      let phone = response.data[i].practices[0].phones;
 
-        let street = response.data[i].practices[j].visit_address.street;
-        let city = response.data[i].practices[j].visit_address.city;
+      let website = (website === undefined) ? "None" : response.data[i].practices[0].website;
 
-        let state = response.data[i].practices[j].visit_address.state;
-
-        let zipcode = (zipcode === undefined) ? "None" : response.data[i].practices[j].visit_address.zip;
-
-        let newPatients = (newPatients === undefined) ? "None" :
-        response.data[i].practices[j].accepts_new_patients;
-
-        let phoneNumber = (phoneNumber === undefined) ? "None" :
-        response.data[i].practices[j].phones[i].number;
-
-        let website = (website === undefined) ? "None" : response.data[i].practices[j].website;
-
-        $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Website:</strong>" + " " + website + '</p>' + "<hr>");
+      $('#doctor-results').append(
+          `<h4>${firstName} ${lastName}</h4>
+          <p>${street} ${city} ${state} ${zipcode}</p> <p><strong>Accepts new patients?</strong> ${newPatients}</p>
+          <p><strong>Phone Number:</strong> ${phone[0].number}</p>
+          <p><strong>Website:</strong> ${website}</p><hr>`);
       }
     }
   }
-}
 
 const displaySpecialities = function(response) {
   console.log(response);
@@ -66,8 +58,7 @@ const displaySpecialities = function(response) {
 $(document).ready(function() {
   $("#doctor-search").submit(function(event) {
     event.preventDefault();
-    $("#doctor-search").hide();
-    $("#speciality-search").hide();
+    $("#search-form").hide();
 
     const name = $("#name").val();
     let newDoctorSearch = new doctorLookup(name);
