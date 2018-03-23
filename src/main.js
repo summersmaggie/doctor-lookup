@@ -23,7 +23,7 @@ const displayDoctors = function(response) {
 
       let website = (website === undefined) ? "none" : response.data[i].practices[i].website;
 
-      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Website:</strong>" + " " + website + '</p>');
+      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Website:</strong>" + " " + website + '</p>' + "<hr>");
     }
   }
 }
