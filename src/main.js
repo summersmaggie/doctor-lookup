@@ -3,13 +3,13 @@ import './styles.css'
 
 const displayDoctors = function(response) {
   if (response.data.length == 0) {
-    $('#doctor-results').text("There are no doctors that match your search.")
+    $('#doctor-results').text("There are no doctors that match your search.");
   } else {
     for(let i = 0; i < response.data.length; i++) {
 
       let firstName = response.data[i].profile.first_name;
       let lastName = response.data[i].profile.last_name;
-
+      console.log(firstName);
       let street = response.data[i].practices[i].visit_address.street;
       let city = response.data[i].practices[i].visit_address.city;
       let state = response.data[i].practices[i].visit_address.state;
@@ -29,6 +29,7 @@ const displayDoctors = function(response) {
 }
 
 const displaySpecialities = function(response) {
+  console.log(response);
   if (response.data.length == 0) {
     $('#doctor-results').text("There are no doctors that match your search.")
   } else {
@@ -42,15 +43,15 @@ const displaySpecialities = function(response) {
       let state = response.data[i].practices[i].visit_address.state;
       let zipcode = response.data[i].practices[i].visit_address.zip;
 
-      let newPatients =  
+      let newPatients =
       response.data[i].practices[i].accepts_new_patients;
 
       let phoneNumber =
       response.data[i].practices[i].phones[i].number;
 
-      let website = (website === undefined) ? "None" : response.data[i].practices[i].website;
+      let speciality = response.data[i].specialties[i].name;
 
-      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Website:</strong>" + " " + website + '</p>' + "<hr>");
+      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>' + "<strong>Phone Number:</strong>" + " " + phoneNumber + '</p>' + "<strong>Speciality:</strong>" + " " + speciality + '</p>' + "<hr>");
     }
   }
 }
@@ -58,13 +59,23 @@ const displaySpecialities = function(response) {
 $(document).ready(function() {
   $("#doctor-search").submit(function(event) {
     event.preventDefault();
-    const name = $("#name").val();
-    const medicalIssue = $("#medical-issue").val();
     $("#doctor-search").hide();
+    $("#speciality-search").hide();
 
-    let newDoctorSearch = new doctorLookup(name, medicalIssue);
+    const name = $("#name").val();
+    let newDoctorSearch = new doctorLookup(name);
 
     newDoctorSearch.getDoctors(name, displayDoctors);
-    newDoctorSearch.getSpecialities(medicalIssue, displaySpecialities)
+  });
+
+  $("#speciality-search").submit(function(event) {
+    event.preventDefault();
+    $("#doctor-search").hide();
+    $("#speciality-search").hide();
+
+    const medicalIssue = $("#medical-issue").val();
+    let newSpecialitySearch = new doctorLookup(medicalIssue);
+
+    newSpecialitySearch.getSpecialities(medicalIssue, displaySpecialities)
   })
 })

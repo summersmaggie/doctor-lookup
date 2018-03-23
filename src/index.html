@@ -10,18 +10,29 @@
   <body>
     <div class="jumbotron"><h2>Doctor Lookup</h2></div>
     <div class="container">
-      <h4>Enter a search query to find a doctor near you:</h4>
-      <form id="doctor-search">
-        <label for="name">Search by doctor name:</label>
-        <input type="text" id="name">
-        <br>
-        <label for="medical-issue">Search by medical issue:</label>
-        <input type="text" id="medical-issue">
-        <br>
-        <button type="submit" class="btn btn-info">Submit</button>
-      </form>
+      <div class="row">
+        <h4>Enter a search query based on name or medical condition to find a doctor near you:</h4>
+        <div class="col">
+          <form id="doctor-search">
+            <label for="name">Search by doctor name:</label>
+            <input type="text" id="name">
+            <br>
+            <button type="submit" class="btn btn-info">Submit</button>
+          </form>
+        </div>
+
+        <div class="col">
+          <form id="speciality-search">
+            <label for="medical-issue">Search by medical issue:</label>
+            <input type="text" id="medical-issue">
+            <br>
+            <button type="submit" class="btn btn-info">Submit</button>
+          </form>
+        </div>
+      </div>
 
       <div id="doctor-results"></div>
+      <div id="speciality-results"></div>
     </div>
   </body>
 </html>
