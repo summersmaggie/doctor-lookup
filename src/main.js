@@ -15,7 +15,11 @@ const displayDoctors = function(response) {
       let state = response.data[i].practices[i].visit_address.state;
       let zipcode = response.data[i].practices[i].visit_address.zip;
 
-      $('#doctor-results').append(" " + '<li>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode +'</li>');
+      let newPatients =
+      response.data[i].practices[i].accepts_new_patients;
+
+
+      $('#doctor-results').append(" " + '<p>' + firstName + " " + lastName + ", " + street + " " + city + ", " + state + " " + zipcode + '</p>' + '<p>' + "<strong>Accepts new patients?</strong>" + " " + newPatients + '</p>');
     }
   }
 }
